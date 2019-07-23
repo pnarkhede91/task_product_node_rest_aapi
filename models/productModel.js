@@ -5,8 +5,8 @@ var Task = function(task){
     // this.status = task.status;
     // this.created_at = new Date();
 };
-Task.getAllTask = function (result) {
-    db.query("Select * from tasks", function (err, res) {
+Task.productsList = function (result) {
+    db.query("Select * from product_tbl", function (err, res) {
 
             if(err) {
                 console.log("error: ", err);
@@ -20,9 +20,11 @@ Task.getAllTask = function (result) {
         });   
 };
 
-Task.createTask = function (newTask, result) { 
+Task.addProduct = function (p, result) { 
+
+   
     
-    db.query("Insert into tasks values(?,?,?,?)",[null,newTask.task,newTask.status,newTask.created_at], function (err, res) {
+    db.query("Insert into product_tbl values(?,?,?,?,?)",[null,p.product_id,p.product_name,p.product_rate,p.fk_comp_id,p.product_img], function (err, res) {
             
             if(err) {
                 console.log("error: ", err);
@@ -35,9 +37,10 @@ Task.createTask = function (newTask, result) {
         });           
 };
 
-Task.getTaskById = function (taskId, result) { 
+Task.read_a_product = function (productId, result) { 
     
-    db.query("Select * from tasks where id=?",[taskId], function (err, res) {
+    db.query("SELECT `product_id`, `product_name`, `product_rate`, `fk_comp_id`, `product_img` FROM `product_tbl` \
+    WHERE `product_id`=?",[productId], function (err, res) {
 
         if(err) {
             console.log("error: ", err);

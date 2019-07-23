@@ -1,7 +1,7 @@
-var Task = require('../models/Task');
+var Task = require('../models/productModel');
 
-exports.list_all_tasks = function(req, res) {
-  Task.getAllTask(function(err, task) {
+exports.productsList = function(req, res) {
+  Task.productsList(function(err, task) {
 
     console.log('controller')
     if (err)
@@ -11,15 +11,13 @@ exports.list_all_tasks = function(req, res) {
   });
 };
 
-exports.create_a_task=function(req,res){
- if(!req.body.task || !req.body.status){
-
-        res.status(400).send({ error:true, message: 'Please provide task/status' });
-
-    }
-    else
-    {
-        Task.createTask(req.body,function(err,task){
+exports.addProduct=function(req,res){
+ if(!req.body.product_name){
+    res.status(400).send({ error:true, message: 'Please provide product_name' });
+}
+else
+{
+    Task.addProduct(req.body,function(err,task){
 
                         if (err)
                         res.send(err);
@@ -30,8 +28,8 @@ exports.create_a_task=function(req,res){
 }
 
 
-exports.read_a_task = function(req, res) {
-    Task.getTaskById(req.params.taskId, function(err, task) {
+exports.read_a_product = function(req, res) {
+    Task.read_a_product(req.params.productId, function(err, task) {
       if (err)
         res.send(err);
       res.json(task);
