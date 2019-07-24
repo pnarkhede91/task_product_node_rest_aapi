@@ -1,4 +1,5 @@
 var db=require('../dbConnection'); //reference of dbconnection.js
+
 //Task object constructor
 var Task = function(task){
     // this.task = task.task;
@@ -54,9 +55,10 @@ Task.read_a_product = function (productId, result) {
     });   
 };
 
-Task.updateById = function(id, task, result){
+Task.update_a_product = function(id, task, result){
 
-    db.query("UPDATE tasks SET task = ? WHERE id = ?", [task.task, id], function (err, res) {
+   
+    db.query("UPDATE product_tbl SET product_name = ?,product_rate=?,fk_comp_id=? WHERE product_id = ?", [task.product_name,task.product_rate,task.fk_comp_id, id], function (err, res) {
             if(err) {
                 console.log("error: ", err);
                   result(null, err);
@@ -68,7 +70,7 @@ Task.updateById = function(id, task, result){
   };
 
   Task.remove = function(id, result){
-    db.query("DELETE FROM tasks WHERE id = ?", [id], function (err, res) {
+    db.query("DELETE FROM `product_tbl` WHERE `product_id`= ?", [id], function (err, res) {
 
                if(err) {
                    console.log("error: ", err);

@@ -9,9 +9,11 @@ module.exports = function(app) {
         .post(todoList.addProduct);
      
      app.route('/products/:productId')
-     .get(todoList.read_a_product);
-    //   .put(todoList.update_a_task)
-    // .delete(todoList.delete_a_task);
+     .get(todoList.read_a_product)
+     .put(todoList.update_a_product)
+     .delete(todoList.delete_a_product);
+
+    
 
 
       };

@@ -36,18 +36,18 @@ exports.read_a_product = function(req, res) {
     });
   };
 
-exports.update_a_task=function(req,res)
+exports.update_a_product=function(req,res)
 {
-    Task.updateById(req.params.taskId,req.body,function(err,task){
+    Task.update_a_product(req.params.productId,req.body,function(err,task){
       if (err)
         res.send(err);
       res.json(task);
     });
 }
 
-exports.delete_a_task=function(req,res)
+exports.delete_a_product=function(req,res)
 {
-  Task.remove( req.params.taskId, function(err, task) {
+  Task.remove( req.params.productId, function(err, task) {
     if (err)
       res.send(err);
     res.json({ message: 'Task successfully deleted' });
